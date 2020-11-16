@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %} index {% endblock %}
+
+{% block body %}
+    {% if not request.user.is_authenticated %}
+        <!-- Register -->
+        <div class="register-as">
+            <div class="container">
+                <h2>Who are you?</h2>
+                <a href="{% url 'app1:teacher-register' %}" class="btn btn-danger">Teacher</a>
+                <a href="{% url 'app1:student-register' %}" class="btn btn-primary">Student</a>
+            </div>
+        </div>
+        <br><br>
+        <!-- Login -->
+        <div class="login">
+            <div class="container">
+                <a href="{% url 'app1:login' %}">Login!</a>
+            </div>
+        </div>
+        {% else %}
+        <!-- Logout -->
+        <div class="logout">
+            <div class="container">
+                <a href="{% url 'app1:logout' %}">Logout!</a>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!-- General auth -->
+    {% if request.user.is_authenticated %}
+        <div class="profile">
+            <div class="container">
+        <!-- Teacher profile -->
+        {% if userprofile.user.is_teacher %}
+            <div class="welcoming">
+                <h3>Teacher Profile</h3>
+                <p>Hi {{ userprofile.user.get_full_name }} How are you?</p>
+            </div>
+        <!-- Student profile -->
+        {% elif userprofile.user.is_student %}
+            <div class="welcoming">
+                <h3>Student Profile</h3>
+                <p>Hi {{ userprofile.user.get_full_name }} How are you?</p>
+            </div>
+        <!-- Admin profile -->
+        {% elif user.is_admin %}
+            <div class="welcoming">
+                <h3>Admin Profile</h3>
+                <p>Hi {{ userprofile.user.get_full_name }} How are you?</p>
+            </div>
+        <!-- Anonymous User -->
+        {% else %}
+            <p>You have no permission to get to this page</p>
+        {% endif %}
+            </div>
+        </div>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %} Register as Teacher {% endblock %}
+
+{% block body %}
+    <div class="teacher-reg">
+        <div class="container">
+            <h2>Register as a Teacher</h2>
+            <form method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    <label for="{{ field.label_name }}">{{ field.label }}</label>
+                    <div>
+                        {{ field }}
+                    </div>
+                {% endfor %}
+                <input type="submit" value="Register" class="btn btn-success">
+            </form>
+        </div>
+    </div>
+{% endblock %}
